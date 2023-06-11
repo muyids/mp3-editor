@@ -1,4 +1,6 @@
 #!/bin/sh
+set -ex
+
 if test "$1" = ""; then
   VERSION=`java -cp "$MP3AGIC_INSTALL_PATH/mp3agic-apps.jar:$MP3AGIC_INSTALL_PATH/mp3agic.jar" com.mpatric.mp3agic.app.LibVersion`
   echo
@@ -12,6 +14,10 @@ if test "$1" = ""; then
   exit 2
 fi
 fin=0
+
+# field names are:
+echo "filename,length,lengthInSeconds,version,layer,sampleRate,bitrate,vbr,channelMode,id3v1tagVersion,id3v2tagVersion,track,artist,album,title,year,genre,comment,composer,originalArtist,copyright,url,encoder,albumImageMimeType,lastCustomTag"
+
 while ! ((fin)); do
   if test "$1" = ""; then
     fin=1

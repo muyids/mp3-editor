@@ -1,4 +1,7 @@
 #!/bin/sh
+
+set -ex
+
 if test "$1" = ""; then
   VERSION=`java -cp "$MP3AGIC_INSTALL_PATH/mp3agic-apps.jar:$MP3AGIC_INSTALL_PATH/mp3agic.jar" com.mpatric.mp3agic.app.LibVersion`
   echo
@@ -38,6 +41,43 @@ while ! ((fin)); do
       shift
       shift
       ;;
+    --title)
+      OPTIONS+=("${1}")
+      OPTIONS+=("${2}")
+      shift
+      shift
+      ;;
+    --artist)
+      OPTIONS+=("${1}")
+      OPTIONS+=("${2}")
+      shift
+      shift
+      ;;
+    --album)
+      OPTIONS+=("${1}")
+      OPTIONS+=("${2}")
+      shift
+      shift
+      ;;
+    --year)
+      OPTIONS+=("${1}")
+      OPTIONS+=("${2}")
+      shift
+      shift
+      ;;
+    --genre)
+      OPTIONS+=("${1}")
+      OPTIONS+=("${2}")
+      shift
+      shift
+      ;;
+    --originalArtist)
+      OPTIONS+=("${1}")
+      OPTIONS+=("${2}")
+      shift
+      shift
+      ;;
+#   ,year,genre,track,comment,composer,originalArtist,albumArtist,albumImage,lyrics,custom]
     -*)
       OPTIONS+=("${1}")
       shift

@@ -23,7 +23,9 @@ public class Mp3RetagTest extends TestCase {
 	private static final String TEST_FILE_WITH_SOME_TAGS_SET = "src/test/resources/mixedfields1.mp3";
 	private static final String ANOTHER_TEST_FILE_WITH_SOME_TAGS_SET = "src/test/resources/mixedfields2.mp3";
 	private static final String TEST_FILE_WITH_NON_NUMERIC_ID3V2_TRACK = "src/test/resources/nonnumeric23track.mp3";
-	
+
+	private static final String TEST_ONE_LIFE = "src/test/resources/3095494182.mp3";
+
 	public void setUp() {
 		Mp3Retag.attachImage = false;
 		Mp3Retag.keepCustomTag = true;
@@ -54,7 +56,7 @@ public class Mp3RetagTest extends TestCase {
 //	public void testShouldReturnFalseForOptionsWithNoSwitchJustParameters() throws Exception {
 //		assertFalse(Mp3Retag.parseArgs(new String[] {"filename", "filename"}));
 //	}
-	
+
 	public void testShouldRetagFileToEquivalentFile() throws Exception {
 		try {
 			Mp3RetagForTesting mp3Retag = new Mp3RetagForTesting(TEST_FILE_WITH_ALL_TAGS_SET);
@@ -121,7 +123,12 @@ public class Mp3RetagTest extends TestCase {
 			deleteFile(TEST_FILE_WITH_ALL_TAGS_SET + ".retag");
 		}
 	}
-	
+
+	public void testShouldAddAlbumImageForFullFilename() throws Exception {
+		String imageFilename = "src/test/resources/梅艳芳-default.png";
+		tryAddImage(TEST_ONE_LIFE, imageFilename);
+	}
+
 	public void testShouldAddAlbumImageForFullImageFilename() throws Exception {
 		String imageFilename = "src/test/resources/Some Artist - Some Album.png";
 		tryAddImage(TEST_FILE_WITH_IMAGE, imageFilename);
